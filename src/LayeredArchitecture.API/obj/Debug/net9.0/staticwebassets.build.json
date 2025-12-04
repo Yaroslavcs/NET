@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ZdrGMd6PG/C4ikCpnYVDkrQ5vWUna0PeyVc7HMU3yjU=",
+  "Source": "LayeredArchitecture.API",
+  "BasePath": "_content/LayeredArchitecture.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

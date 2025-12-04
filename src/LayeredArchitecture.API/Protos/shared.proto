@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+option csharp_namespace = "LayeredArchitecture.API.Grpc.Shared";
+
+package shared;
+
+// Common response status
+enum ResponseStatus {
+  SUCCESS = 0;
+  NOT_FOUND = 1;
+  VALIDATION_ERROR = 2;
+  INTERNAL_ERROR = 3;
+  UNAUTHORIZED = 4;
+}
+
+// Common metadata for cache control
+message CacheMetadata {
+  bool is_cached = 1;
+  string cache_key = 2;
+  int32 cache_ttl_seconds = 3;
+  string cache_source = 4; // "memory", "redis", "database"
+}
+
+// Pagination information
+message PaginationInfo {
+  int32 page = 1;
+  int32 page_size = 2;
+  int32 total_count = 3;
+  int32 total_pages = 4;
+  bool has_next_page = 5;
+  bool has_previous_page = 6;
+}
+
+// Money amount for consistent financial data
+message MoneyAmount {
+  decimal amount = 1;
+  string currency = 2; // ISO 4217 currency code
+}
+
+// Timestamp information
+message Timestamp {
+  string created_at = 1;
+  string updated_at = 2;
+  string deleted_at = 3;
+}

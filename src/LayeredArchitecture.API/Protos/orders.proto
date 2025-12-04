@@ -1,0 +1,158 @@
+syntax = "proto3";
+
+import "shared.proto";
+
+option csharp_namespace = "LayeredArchitecture.API.Grpc";
+
+package orders;
+
+// Order service definition
+service OrderService {
+  // Get order by ID (with caching support)
+  rpc GetOrder (GetOrderRequest) returns (CachedOrderResponse);
+  
+  // Get all orders (with caching support)
+  rpc GetAllOrders (GetAllOrdersRequest) returns (CachedOrdersResponse);
+  
+  // Get orders by customer (with caching support)
+  rpc GetOrdersByCustomer (GetOrdersByCustomerRequest) returns (CachedOrdersResponse);
+  
+  // Create new order (invalidates cache)
+  rpc CreateOrder (CreateOrderRequest) returns (OrderResponse);
+  
+  // Update order status (invalidates cache)
+  rpc UpdateOrderStatus (UpdateOrderStatusRequest) returns (OrderResponse);
+  
+  // Delete order (invalidates cache)
+  rpc DeleteOrder (DeleteOrderRequest) returns (DeleteOrderResponse);
+  
+  // Get total revenue (with caching support)
+  rpc GetTotalRevenue (GetTotalRevenueRequest) returns (CachedTotalRevenueResponse);
+  
+  // Get order statistics (with caching support)
+  rpc GetOrderStatistics (GetOrderStatisticsRequest) returns (OrderStatisticsResponse);
+}
+
+// Order item message
+message OrderItem {
+  string product_id = 1;
+  string product_name = 2;
+  int32 quantity = 3;
+  decimal unit_price = 4;
+  decimal subtotal = 5;
+}
+
+// Money amount message
+message MoneyAmount {
+  decimal amount = 1;
+  string currency = 2;
+}
+
+// Request messages
+message GetOrderRequest {
+  string id = 1;
+}
+
+message GetAllOrdersRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message GetOrdersByCustomerRequest {
+  string customer_id = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message CreateOrderRequest {
+  string customer_id = 1;
+  repeated OrderItem items = 2;
+  MoneyAmount total_amount = 3;
+}
+
+message UpdateOrderStatusRequest {
+  string id = 1;
+  OrderStatus status = 2;
+}
+
+message DeleteOrderRequest {
+  string id = 1;
+}
+
+message GetTotalRevenueRequest {
+  string start_date = 1;
+  string end_date = 2;
+}
+
+message GetOrderStatisticsRequest {
+  string start_date = 1;
+  string end_date = 2;
+}
+
+// Response messages
+message OrderResponse {
+  string id = 1;
+  string customer_id = 2;
+  repeated OrderItem items = 3;
+  MoneyAmount total_amount = 4;
+  OrderStatus status = 5;
+  string order_date = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message OrdersResponse {
+  repeated OrderResponse orders = 1;
+  int32 total_count = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message DeleteOrderResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message TotalRevenueResponse {
+  decimal total_revenue = 1;
+  string currency = 2;
+  string start_date = 3;
+  string end_date = 4;
+}
+
+// Cached response messages
+message CachedOrderResponse {
+  OrderResponse order = 1;
+  shared.CacheMetadata cache_metadata = 2;
+}
+
+message CachedOrdersResponse {
+  OrdersResponse orders = 1;
+  shared.CacheMetadata cache_metadata = 2;
+}
+
+message CachedTotalRevenueResponse {
+  TotalRevenueResponse revenue = 1;
+  shared.CacheMetadata cache_metadata = 2;
+}
+
+message OrderStatisticsResponse {
+  int32 total_orders = 1;
+  int32 pending_orders = 2;
+  int32 confirmed_orders = 3;
+  int32 shipped_orders = 4;
+  int32 delivered_orders = 5;
+  int32 cancelled_orders = 6;
+  MoneyAmount total_revenue = 7;
+  shared.CacheMetadata cache_metadata = 8;
+}
+
+// Order status enum
+enum OrderStatus {
+  ORDER_STATUS_UNSPECIFIED = 0;
+  ORDER_STATUS_PENDING = 1;
+  ORDER_STATUS_CONFIRMED = 2;
+  ORDER_STATUS_SHIPPED = 3;
+  ORDER_STATUS_DELIVERED = 4;
+  ORDER_STATUS_CANCELLED = 5;
+}

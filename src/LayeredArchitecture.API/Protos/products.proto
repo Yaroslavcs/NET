@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+import "shared.proto";
+
+option csharp_namespace = "LayeredArchitecture.API.Grpc";
+
+package products;
+
+// Product service definition
+service ProductService {
+  // Get product by ID (with caching support)
+  rpc GetProduct (GetProductRequest) returns (CachedProductResponse);
+  
+  // Get all products (with caching support)
+  rpc GetAllProducts (GetAllProductsRequest) returns (CachedProductsResponse);
+  
+  // Create new product (invalidates cache)
+  rpc CreateProduct (CreateProductRequest) returns (ProductResponse);
+  
+  // Update product (invalidates cache)
+  rpc UpdateProduct (UpdateProductRequest) returns (ProductResponse);
+  
+  // Delete product (invalidates cache)
+  rpc DeleteProduct (DeleteProductRequest) returns (DeleteProductResponse);
+}
+
+// Request messages
+message GetProductRequest {
+  string id = 1;
+}
+
+message GetAllProductsRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message CreateProductRequest {
+  string name = 1;
+  string description = 2;
+  decimal price = 3;
+  string sku = 4;
+  int32 stock_quantity = 5;
+}
+
+message UpdateProductRequest {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  decimal price = 4;
+  string sku = 5;
+  int32 stock_quantity = 6;
+}
+
+message DeleteProductRequest {
+  string id = 1;
+}
+
+// Response messages
+message ProductResponse {
+  string id = 1;
+  string name = 2;
+  string description = 3;
+  decimal price = 4;
+  string sku = 5;
+  int32 stock_quantity = 6;
+  bool is_active = 7;
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+message ProductsResponse {
+  repeated ProductResponse products = 1;
+  int32 total_count = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message DeleteProductResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Cached response messages
+message CachedProductResponse {
+  ProductResponse product = 1;
+  shared.CacheMetadata cache_metadata = 2;
+}
+
+message CachedProductsResponse {
+  ProductsResponse products = 1;
+  shared.CacheMetadata cache_metadata = 2;
+}

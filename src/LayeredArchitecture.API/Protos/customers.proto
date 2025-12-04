@@ -1,0 +1,109 @@
+syntax = "proto3";
+
+import "shared.proto";
+
+option csharp_namespace = "LayeredArchitecture.API.Grpc";
+
+package customers;
+
+// Customer service definition
+service CustomerService {
+  // Get customer by ID (with caching support)
+  rpc GetCustomer (GetCustomerRequest) returns (CachedCustomerResponse);
+  
+  // Get all customers (with caching support)
+  rpc GetAllCustomers (GetAllCustomersRequest) returns (CachedCustomersResponse);
+  
+  // Get customers by city (with caching support)
+  rpc GetCustomersByCity (GetCustomersByCityRequest) returns (CachedCustomersResponse);
+  
+  // Create new customer (invalidates cache)
+  rpc CreateCustomer (CreateCustomerRequest) returns (CustomerResponse);
+  
+  // Update customer (invalidates cache)
+  rpc UpdateCustomer (UpdateCustomerRequest) returns (CustomerResponse);
+  
+  // Delete customer (invalidates cache)
+  rpc DeleteCustomer (DeleteCustomerRequest) returns (DeleteCustomerResponse);
+}
+
+// Address message
+message Address {
+  string street = 1;
+  string city = 2;
+  string state = 3;
+  string zip_code = 4;
+  string country = 5;
+}
+
+// Request messages
+message GetCustomerRequest {
+  string id = 1;
+}
+
+message GetAllCustomersRequest {
+  int32 page = 1;
+  int32 page_size = 2;
+}
+
+message GetCustomersByCityRequest {
+  string city = 1;
+  int32 page = 2;
+  int32 page_size = 3;
+}
+
+message CreateCustomerRequest {
+  string first_name = 1;
+  string last_name = 2;
+  string email = 3;
+  string phone = 4;
+  Address address = 5;
+}
+
+message UpdateCustomerRequest {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string phone = 5;
+  Address address = 6;
+}
+
+message DeleteCustomerRequest {
+  string id = 1;
+}
+
+// Response messages
+message CustomerResponse {
+  string id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string phone = 5;
+  Address address = 6;
+  string created_at = 7;
+  string updated_at = 8;
+}
+
+message CustomersResponse {
+  repeated CustomerResponse customers = 1;
+  int32 total_count = 2;
+  int32 page = 3;
+  int32 page_size = 4;
+}
+
+message DeleteCustomerResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+// Cached response messages
+message CachedCustomerResponse {
+  CustomerResponse customer = 1;
+  shared.CacheMetadata cache_metadata = 2;
+}
+
+message CachedCustomersResponse {
+  CustomersResponse customers = 1;
+  shared.CacheMetadata cache_metadata = 2;
+}

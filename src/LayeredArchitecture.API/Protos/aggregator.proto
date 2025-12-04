@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+option csharp_namespace = "LayeredArchitecture.API.Grpc";
+
+package aggregator;
+
+import "products.proto";
+import "customers.proto";
+import "orders.proto";
+
+// Aggregator service definition
+service AggregatorService {
+  // Get complete order details with customer and product information
+  rpc GetOrderDetails (GetOrderDetailsRequest) returns (OrderDetailsResponse);
+  
+  // Get customer with their orders
+  rpc GetCustomerWithOrders (GetCustomerWithOrdersRequest) returns (CustomerWithOrdersResponse);
+  
+  // Get product with related orders
+  rpc GetProductWithOrders (GetProductWithOrdersRequest) returns (ProductWithOrdersResponse);
+  
+  // Create order with validation
+  rpc CreateOrderWithValidation (CreateOrderWithValidationRequest) returns (CreateOrderWithValidationResponse);
+}
+
+// Request messages
+message GetOrderDetailsRequest {
+  string order_id = 1;
+}
+
+message GetCustomerWithOrdersRequest {
+  string customer_id = 1;
+}
+
+message GetProductWithOrdersRequest {
+  string product_id = 1;
+}
+
+message CreateOrderWithValidationRequest {
+  string customer_id = 1;
+  repeated OrderItemRequest items = 2;
+  string shipping_address = 3;
+  string payment_method = 4;
+}
+
+message OrderItemRequest {
+  string product_id = 1;
+  int32 quantity = 2;
+  decimal unit_price = 3;
+}
+
+// Response messages
+message OrderDetailsResponse {
+  orders.Order order = 1;
+  customers.Customer customer = 2;
+  repeated ProductOrderItem items = 3;
+  decimal total_amount = 4;
+  string status = 5;
+}
+
+message ProductOrderItem {
+  string product_id = 1;
+  string product_name = 2;
+  int32 quantity = 3;
+  decimal unit_price = 4;
+  decimal subtotal = 5;
+}
+
+message CustomerWithOrdersResponse {
+  customers.Customer customer = 1;
+  repeated orders.Order orders = 2;
+  int32 total_orders = 3;
+  decimal total_spent = 4;
+}
+
+message ProductWithOrdersResponse {
+  products.ProductResponse product = 1;
+  repeated orders.Order orders = 2;
+  int32 total_orders = 3;
+  int32 total_quantity_sold = 4;
+  decimal total_revenue = 5;
+}
+
+message CreateOrderWithValidationResponse {
+  bool success = 1;
+  string order_id = 2;
+  string message = 3;
+  decimal total_amount = 4;
+  repeated ValidationError validation_errors = 5;
+}
+
+message ValidationError {
+  string field = 1;
+  string message = 2;
+}
