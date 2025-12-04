@@ -1,0 +1,12 @@
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\LayeredArchitecture.ServiceDefaults.csproj.AssemblyReference.cache
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\LayeredArchitecture.ServiceDefaults.GeneratedMSBuildEditorConfig.editorconfig
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\LayeredArchitecture.ServiceDefaults.AssemblyInfoInputs.cache
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\LayeredArchitecture.ServiceDefaults.AssemblyInfo.cs
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\LayeredArchitecture.ServiceDefaults.csproj.CoreCompileInputs.cache
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\bin\Debug\net9.0\LayeredArchitecture.ServiceDefaults.deps.json
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\bin\Debug\net9.0\LayeredArchitecture.ServiceDefaults.dll
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\bin\Debug\net9.0\LayeredArchitecture.ServiceDefaults.pdb
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\LayeredArchitecture.ServiceDefaults.dll
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\refint\LayeredArchitecture.ServiceDefaults.dll
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\LayeredArchitecture.ServiceDefaults.pdb
+C:\Університет\NET.SapsaiYaroslav.2025\5 Лабораторна робота\src\LayeredArchitecture.ServiceDefaults\obj\Debug\net9.0\ref\LayeredArchitecture.ServiceDefaults.dll
