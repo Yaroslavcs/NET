@@ -1,0 +1,5 @@
+C:\Університет\NET.SapsaiYaroslav.2025\6 Лабораторна робота\src\LayeredArchitecture.Infrastructure\obj\Debug\net9.0\LayeredArchitecture.Infrastructure.csproj.AssemblyReference.cache
+C:\Університет\NET.SapsaiYaroslav.2025\6 Лабораторна робота\src\LayeredArchitecture.Infrastructure\obj\Debug\net9.0\LayeredArchitecture.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Університет\NET.SapsaiYaroslav.2025\6 Лабораторна робота\src\LayeredArchitecture.Infrastructure\obj\Debug\net9.0\LayeredArchitecture.Infrastructure.AssemblyInfoInputs.cache
+C:\Університет\NET.SapsaiYaroslav.2025\6 Лабораторна робота\src\LayeredArchitecture.Infrastructure\obj\Debug\net9.0\LayeredArchitecture.Infrastructure.AssemblyInfo.cs
+C:\Університет\NET.SapsaiYaroslav.2025\6 Лабораторна робота\src\LayeredArchitecture.Infrastructure\obj\Debug\net9.0\LayeredArchitecture.Infrastructure.csproj.CoreCompileInputs.cache

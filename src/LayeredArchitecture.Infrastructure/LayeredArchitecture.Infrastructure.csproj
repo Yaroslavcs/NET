@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LayeredArchitecture.Domain\LayeredArchitecture.Domain.csproj" />
+    <ProjectReference Include="..\LayeredArchitecture.Application\LayeredArchitecture.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="10.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="3.5.2" />
+  </ItemGroup>
+
+</Project>
